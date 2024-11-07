@@ -48,11 +48,21 @@ jobs:
       - name: Deploy to server
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+        shell: /usr/bin/bash -e {0}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Check deploy key content
         run: cat ~/.ssh/deploy_key
+
+      - name: Test SSH connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key aist@84.252.132.144 echo "SSH connection successful"
+        shell: /usr/bin/bash -e {0}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to server using SSH
         run: |

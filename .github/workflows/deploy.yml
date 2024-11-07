@@ -58,10 +58,18 @@ jobs:
       - name: Deploy to server using SSH
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key aist@84.252.132.144 << 'EOF'
-            cd /home/aist/bankingapi_stubs
-            git pull
-            docker-compose pull
-            docker-compose down
-            docker-compose up -d
+            cd /home/aist
+            if [ -d "bankingapi_stubs" ]; then
+              cd bankingapi_stubs
+              if [ ! -d ".git" ]; then
+                cd ..
+                rm -rf bankingapi_stubs
+                git clone https://github.com/Aisttt/bankingapi_stubs.git
+              else
+                git pull origin main
+              fi
+            else
+              git clone https://github.com/Aisttt/bankingapi_stubs.git
+            fi
           EOF
         shell: /usr/bin/bash -e {0}

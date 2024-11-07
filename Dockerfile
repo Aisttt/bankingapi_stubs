@@ -10,8 +10,9 @@ COPY package.json package-lock.json ./
 # Устанавливаем зависимости с помощью npm
 RUN npm install
 
-# Копируем остальные файлы проекта (все JavaScript заглушки и конфигурации)
-COPY . .
+# Копируем все файлы заглушек
+COPY ./OpenAPI /app/OpenAPI
+COPY ./PartnerAPI /app/PartnerAPI
 
 # Переменная окружения PORT для указания, какой порт будет слушать заглушка
 ARG PORT=3000

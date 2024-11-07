@@ -48,7 +48,7 @@ services:
       - "8084:3004"
     environment:
       PORT: 3004
-    command: ["node", "PartnerAPI/Карты/1234.opent1-EmissionRequests-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Cards/1234.opent1-EmissionRequests-s-rest-v1.js"]
 
   information_requests:
     build:
@@ -58,7 +58,7 @@ services:
       - "8085:3005"
     environment:
       PORT: 3005
-    command: ["node", "PartnerAPI/Карты/1234.opent1-InformationRequests-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Cards/1234.opent1-InformationRequests-s-rest-v1.js"]
 
   operation_requests:
     build:
@@ -68,7 +68,7 @@ services:
       - "8086:3006"
     environment:
       PORT: 3006
-    command: ["node", "PartnerAPI/Карты/1234.opent1-OperationRequests-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Cards/1234.opent1-OperationRequests-s-rest-v1.js"]
 
   payment_basic_scenario:
     build:
@@ -78,7 +78,7 @@ services:
       - "8087:3007"
     environment:
       PORT: 3007
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentBasicScenario-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Payments/1234.opent1-PaymentBasicScenario-s-rest-v1.js"]
 
   payment_mobile_operator:
     build:
@@ -88,7 +88,7 @@ services:
       - "8088:3008"
     environment:
       PORT: 3008
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentMobileOperator-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Payments/1234.opent1-PaymentMobileOperator-s-rest-v1.js"]
 
   payment_of_fines:
     build:
@@ -98,7 +98,7 @@ services:
       - "8089:3009"
     environment:
       PORT: 3009
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentOfFines-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Payments/1234.opent1-PaymentOfFines-s-rest-v1.js"]
 
   search_providers:
     build:
@@ -108,7 +108,7 @@ services:
       - "8090:3010"
     environment:
       PORT: 3010
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-SearchProviders-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/Payments/1234.opent1-SearchProviders-s-rest-v1.js"]
 
   cash_loans:
     build:
@@ -118,7 +118,7 @@ services:
       - "8091:3011"
     environment:
       PORT: 3011
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-CashLoans-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/1234.opent1-CashLoans-s-rest-v1.js"]
 
   lead_operations:
     build:
@@ -128,7 +128,7 @@ services:
       - "8092:3012"
     environment:
       PORT: 3012
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-LeadOperations-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/1234.opent1-LeadOperations-s-rest-v1.js"]
 
   payment_bonus_points:
     build:
@@ -138,4 +138,4 @@ services:
       - "8093:3013"
     environment:
       PORT: 3013
-    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentBonusPoints-s-rest-v1.js"]
+    command: ["node", "PartnerAPI/1234.opent1-PaymentBonusPoints-s-rest-v1.js"]

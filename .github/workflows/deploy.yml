@@ -34,18 +34,6 @@ jobs:
           docker-compose push
         shell: /usr/bin/bash -e {0}
 
-      - name: Check if SSH_PRIVATE_KEY is set
-        run: |
-          if [ -z "$SSH_PRIVATE_KEY" ]; then
-            echo "SSH_PRIVATE_KEY is not set or is empty!"
-            exit 1
-          else
-            echo "SSH_PRIVATE_KEY is set correctly."
-          fi
-        shell: /usr/bin/bash -e {0}
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Deploy to server
         run: |
           mkdir -p ~/.ssh
@@ -55,26 +43,17 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Check deploy key content
-        run: cat ~/.ssh/deploy_key
-        shell: /usr/bin/bash -e {0}
-
       - name: Clone project on server
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key aist@84.252.132.144 << 'EOF'
             cd /home/aist
             if [ ! -d "bankingapi_stubs" ]; then
               git clone https://github.com/Aisttt/bankingapi_stubs.git
-            else
-              cd bankingapi_stubs
-              git pull
             fi
-            ls -la /home/aist/bankingapi_stubs
           EOF
         shell: /usr/bin/bash -e {0}
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
 
       - name: Deploy to server using SSH
         run: |

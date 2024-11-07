@@ -15,11 +15,10 @@ COPY ./OpenAPI /app/OpenAPI
 COPY ./PartnerAPI /app/PartnerAPI
 
 # Переменная окружения PORT для указания, какой порт будет слушать заглушка
-ARG PORT=3000
-ENV PORT=${PORT}
+ENV PORT=3000
 
 # Открываем порт для взаимодействия
-EXPOSE ${PORT}
+EXPOSE $PORT
 
 # Команда для запуска заглушки, по умолчанию запускается `npm start`
 # Но её можно переопределить через docker-compose

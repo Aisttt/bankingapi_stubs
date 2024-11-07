@@ -15,52 +15,6 @@ const setResponseHeaders = (res) => {
     res.setHeader('x-customer-user-agent', faker.internet.userAgent());
 };
 
-
-// 6. Создание предложения по продукту для лида
-app.post('/product-offers', (req, res) => {
-    res.status(201).json({
-        Data: {
-            offerId: "OFFER-01-" + faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
-            offerStatus: "AwaitingAuthorisation",
-            customerLeadId: faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
-            ProductOffers: [
-                {
-                    offerId: "OFFER-01-" + faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
-                    productId: faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
-                    accountId: faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
-                    offerType: "ProductApplication",
-                    description: faker.lorem.sentence(),
-                    startDateTime: new Date().toISOString(),
-                    endDateTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // Через неделю
-                    rate: parseFloat(faker.finance.amount(0, 99, 4)).toFixed(4) + "%", // Значение не превышает 99 и округлено до 4 знаков после запятой
-                    value: faker.number.int({ min: 1, max: 100 }),
-                    term: "12 месяцев",
-                    URL: faker.internet.url(),
-                    Amount: {
-                        amount: parseFloat(faker.finance.amount(100, 1000, 2)).toFixed(2), // Формат с двумя знаками после запятой
-                        currency: "RUB"
-                    },
-                    Fee: {
-                        amount: parseFloat(faker.finance.amount(100, 1000, 2)).toFixed(2), // Формат с двумя знаками после запятой
-                        currency: "RUB"
-                    }
-                }
-            ]
-        },
-        Links: {
-            self: faker.internet.url(),
-            first: faker.internet.url(),
-            prev: faker.internet.url(),
-            next: faker.internet.url(),
-            last: faker.internet.url()
-        },
-        Meta: {
-            totalPages: 4
-        }
-    });
-});
-
-
 // 1. Получение списка доступных банковских продуктов
 app.get('/products', (req, res) => {
     const products = [
@@ -712,7 +666,49 @@ app.delete('/customer-leads/:customerLeadId', (req, res) => {
     res.status(204).send();
 });
 
-
+// 6. Создание предложения по продукту для лида
+app.post('/product-offers', (req, res) => {
+    res.status(201).json({
+        Data: {
+            offerId: "OFFER-01-" + faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
+            offerStatus: "AwaitingAuthorisation",
+            customerLeadId: faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
+            ProductOffers: [
+                {
+                    offerId: "OFFER-01-" + faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
+                    productId: faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
+                    accountId: faker.string.uuid().slice(0, 13), // Укоротил UUID для соответствия ограничению в 40 символов
+                    offerType: "ProductApplication",
+                    description: faker.lorem.sentence(),
+                    startDateTime: new Date().toISOString(),
+                    endDateTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // Через неделю
+                    rate: parseFloat(faker.finance.amount(0, 99, 4)).toFixed(4) + "%", // Значение не превышает 99 и округлено до 4 знаков после запятой
+                    value: faker.number.int({ min: 1, max: 100 }),
+                    term: "12 месяцев",
+                    URL: faker.internet.url(),
+                    Amount: {
+                        amount: parseFloat(faker.finance.amount(100, 1000, 2)).toFixed(2), // Формат с двумя знаками после запятой
+                        currency: "RUB"
+                    },
+                    Fee: {
+                        amount: parseFloat(faker.finance.amount(100, 1000, 2)).toFixed(2), // Формат с двумя знаками после запятой
+                        currency: "RUB"
+                    }
+                }
+            ]
+        },
+        Links: {
+            self: faker.internet.url(),
+            first: faker.internet.url(),
+            prev: faker.internet.url(),
+            next: faker.internet.url(),
+            last: faker.internet.url()
+        },
+        Meta: {
+            totalPages: 4
+        }
+    });
+});
 
 // 7. Список всех предложений по продукту для лида
 app.get('/product-offers', (req, res) => {

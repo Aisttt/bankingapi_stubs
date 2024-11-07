@@ -3,7 +3,7 @@ const { faker } = require('@faker-js/faker');
 const app = express();
 faker.locale = 'ru';
 
-const PORT = 3007;
+const PORT = process.env.PORT || 3007;
 
 app.use(express.json());
 

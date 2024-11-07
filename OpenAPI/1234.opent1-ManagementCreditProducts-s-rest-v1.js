@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 faker.locale = 'ru'; // Устанавливаем локаль на русский
 
 const app = express();
-const PORT = 3002;
+const PORT = process.env.PORT || 3002;
 
 app.use(express.json());
 

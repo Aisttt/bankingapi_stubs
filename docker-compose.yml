@@ -139,3 +139,4 @@ services:
     environment:
       PORT: 3013
     command: ["node", "PartnerAPI/1234.opent1-PaymentBonusPoints-s-rest-v1.js"]
+

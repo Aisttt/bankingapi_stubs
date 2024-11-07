@@ -26,50 +26,30 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-        shell: /usr/bin/bash -e {0}
 
       - name: Build and push Docker images
         run: |
           docker-compose build
           docker-compose push
-        shell: /usr/bin/bash -e {0}
 
       - name: Deploy to server
-        run: |
-          mkdir -p ~/.ssh
-          echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-        shell: /usr/bin/bash -e {0}
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Clone project on server
         run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key aist@84.252.132.144 << 'EOF'
+            set -e
             cd /home/aist
             if [ ! -d "bankingapi_stubs" ]; then
               git clone https://github.com/Aisttt/bankingapi_stubs.git
-            fi
-          EOF
-        shell: /usr/bin/bash -e {0}
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy to server using SSH
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key aist@84.252.132.144 << 'EOF'
-            cd /home/aist
-            if [ -d "bankingapi_stubs" ]; then
-              cd bankingapi_stubs
-              if [ ! -d ".git" ]; then
-                cd ..
-                rm -rf bankingapi_stubs
-                git clone https://github.com/Aisttt/bankingapi_stubs.git
-              else
-                git pull origin main
-              fi
             else
-              git clone https://github.com/Aisttt/bankingapi_stubs.git
+              cd bankingapi_stubs
+              git pull origin main
             fi
+            docker-compose pull
+            docker-compose down
+            docker-compose up -d
           EOF
-        shell: /usr/bin/bash -e {0}

@@ -1,7 +1,7 @@
 const express = require('express');
 const { faker } = require('@faker-js/faker');
 const app = express();
-const port = 5009; // Порт для новой заглушки
+const port = 6000; // Порт для новой заглушки
 
 app.use(express.json());
 

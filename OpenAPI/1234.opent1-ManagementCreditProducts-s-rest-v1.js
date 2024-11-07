@@ -644,15 +644,29 @@ app.get('/products/:productId', (req, res) => {
     });
 });
 
-// 3. Создание ресурса для генерации лида
+// 3. Создание ресурса для генерации лида с динамическим выбором статуса
 app.post('/customer-leads', (req, res) => {
+    const statuses = ['AwaitingAuthorisation', 'Authorised', 'Rejected', 'Completed', 'Pending']; // возможные статусы
+    const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+
     setResponseHeaders(res);
     res.status(201).json({
-        customerLeadId: faker.string.uuid(),
-        status: 'создан',
-        createdAt: new Date().toISOString(),
+        Data: {
+            customerLeadId: faker.string.uuid(),
+            leadStatus: randomStatus,
+            permissions: ['ReadProductOffer']
+        },
+        Links: {
+            self: `https://example.com/customer-leads/${faker.string.uuid()}`,
+            first: "https://example.com/customer-leads?page=1",
+            last: "https://example.com/customer-leads?page=1"
+        },
+        Meta: {
+            totalPages: 1
+        }
     });
 });
+
 
 // 5. Удаление ресурса лида по его ID
 app.delete('/customer-leads/:customerLeadId', (req, res) => {

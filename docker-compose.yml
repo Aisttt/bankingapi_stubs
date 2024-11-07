@@ -1,0 +1,141 @@
+version: '3.8'
+services:
+  get_custom_account:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6001:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "OpenAPI/1234.opent1-getCustomAccount-s-rest-v1.js"]
+
+  initiating_transfer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6002:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "OpenAPI/1234.opent1-initiatingTransfer-s-rest-v1.js"]
+
+  management_credit_products:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6003:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "OpenAPI/1234.opent1-ManagementCreditProducts-s-rest-v1.js"]
+
+  transfers_of_funds:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6004:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "OpenAPI/1234.opent1-transfersOfFunds-s-rest-v1.js"]
+
+  emission_requests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6005:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Карты/1234.opent1-EmissionRequests-s-rest-v1.js"]
+
+  information_requests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6006:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Карты/1234.opent1-InformationRequests-s-rest-v1.js"]
+
+  operation_requests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6007:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Карты/1234.opent1-OperationRequests-s-rest-v1.js"]
+
+  payment_basic_scenario:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6008:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentBasicScenario-s-rest-v1.js"]
+
+  payment_mobile_operator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6009:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentMobileOperator-s-rest-v1.js"]
+
+  payment_of_fines:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6010:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentOfFines-s-rest-v1.js"]
+
+  search_providers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6011:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-SearchProviders-s-rest-v1.js"]
+
+  cash_loans:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6012:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-CashLoans-s-rest-v1.js"]
+
+  lead_operations:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6013:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-LeadOperations-s-rest-v1.js"]
+
+  payment_bonus_points:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6014:3000"
+    environment:
+      PORT: 3000
+    command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentBonusPoints-s-rest-v1.js"]

@@ -64,6 +64,11 @@ app.put('/status/:publicId', (req, res) => {
     });
 });
 
+// Обработка всех неизвестных маршрутов
+app.use((req, res) => {
+    res.status(404).json({ message: "Маршрут не найден" });
+});
+
 app.listen(port, () => {
     console.log(`Mock API сервер запущен на порту ${port}`);
 });

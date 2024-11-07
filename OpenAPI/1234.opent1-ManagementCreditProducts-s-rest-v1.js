@@ -817,6 +817,11 @@ app.delete('/product-application/:productApplicationId', (req, res) => {
     });
 });
 
+// Обработка всех неизвестных маршрутов
+app.use((req, res) => {
+    res.status(404).json({ message: "Маршрут не найден" });
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);

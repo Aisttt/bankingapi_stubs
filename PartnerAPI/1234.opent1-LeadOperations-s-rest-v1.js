@@ -76,6 +76,11 @@ app.post('/check_leads', (req, res) => {
     res.status(200).json(response);
 });
 
+// Обработка всех неизвестных маршрутов
+app.use((req, res) => {
+    res.status(404).json({ message: "Маршрут не найден" });
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`Mock API сервер запущен на порту ${PORT}`);

@@ -110,6 +110,11 @@ app.get('/vrp-payments/:VRPId/payment-details', (req, res) => {
     res.status(200).json(response);
 });
 
+// Обработка всех неизвестных маршрутов
+app.use((req, res) => {
+    res.status(404).json({ message: "Маршрут не найден" });
+});
+
 app.listen(PORT, () => {
     console.log(`Mock API server is running on port ${PORT}`);
 });

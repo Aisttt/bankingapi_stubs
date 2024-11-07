@@ -22,6 +22,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+        shell: /usr/bin/bash -e {0}
+
       - name: Build and push Docker images
         run: |
           docker-compose build
@@ -45,10 +51,13 @@ jobs:
           mkdir -p ~/.ssh
           echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          cat ~/.ssh/deploy_key
         shell: /usr/bin/bash -e {0}
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Check deploy key content
+        run: cat ~/.ssh/deploy_key
+        shell: /usr/bin/bash -e {0}
 
       - name: Deploy to server using SSH
         run: |

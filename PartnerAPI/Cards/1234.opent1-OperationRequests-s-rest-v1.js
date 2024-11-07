@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 5007; // Используйте другой порт для новой заглушки
+const port = 3006; // Используйте другой порт для новой заглушки
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());

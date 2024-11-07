@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6001:3000"
+      - "8080:3000"
     environment:
       PORT: 3000
     command: ["node", "OpenAPI/1234.opent1-getCustomAccount-s-rest-v1.js"]
@@ -15,9 +15,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6002:3000"
+      - "8081:3001"
     environment:
-      PORT: 3000
+      PORT: 3001
     command: ["node", "OpenAPI/1234.opent1-initiatingTransfer-s-rest-v1.js"]
 
   management_credit_products:
@@ -25,9 +25,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6003:3000"
+      - "8082:3002"
     environment:
-      PORT: 3000
+      PORT: 3002
     command: ["node", "OpenAPI/1234.opent1-ManagementCreditProducts-s-rest-v1.js"]
 
   transfers_of_funds:
@@ -35,9 +35,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6004:3000"
+      - "8083:3003"
     environment:
-      PORT: 3000
+      PORT: 3003
     command: ["node", "OpenAPI/1234.opent1-transfersOfFunds-s-rest-v1.js"]
 
   emission_requests:
@@ -45,9 +45,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6005:3000"
+      - "8084:3004"
     environment:
-      PORT: 3000
+      PORT: 3004
     command: ["node", "PartnerAPI/Карты/1234.opent1-EmissionRequests-s-rest-v1.js"]
 
   information_requests:
@@ -55,9 +55,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6006:3000"
+      - "8085:3005"
     environment:
-      PORT: 3000
+      PORT: 3005
     command: ["node", "PartnerAPI/Карты/1234.opent1-InformationRequests-s-rest-v1.js"]
 
   operation_requests:
@@ -65,9 +65,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6007:3000"
+      - "8086:3006"
     environment:
-      PORT: 3000
+      PORT: 3006
     command: ["node", "PartnerAPI/Карты/1234.opent1-OperationRequests-s-rest-v1.js"]
 
   payment_basic_scenario:
@@ -75,9 +75,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6008:3000"
+      - "8087:3007"
     environment:
-      PORT: 3000
+      PORT: 3007
     command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentBasicScenario-s-rest-v1.js"]
 
   payment_mobile_operator:
@@ -85,9 +85,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6009:3000"
+      - "8088:3008"
     environment:
-      PORT: 3000
+      PORT: 3008
     command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentMobileOperator-s-rest-v1.js"]
 
   payment_of_fines:
@@ -95,9 +95,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6010:3000"
+      - "8089:3009"
     environment:
-      PORT: 3000
+      PORT: 3009
     command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentOfFines-s-rest-v1.js"]
 
   search_providers:
@@ -105,9 +105,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6011:3000"
+      - "8090:3010"
     environment:
-      PORT: 3000
+      PORT: 3010
     command: ["node", "PartnerAPI/Платежи/1234.opent1-SearchProviders-s-rest-v1.js"]
 
   cash_loans:
@@ -115,9 +115,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6012:3000"
+      - "8091:3011"
     environment:
-      PORT: 3000
+      PORT: 3011
     command: ["node", "PartnerAPI/Платежи/1234.opent1-CashLoans-s-rest-v1.js"]
 
   lead_operations:
@@ -125,9 +125,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6013:3000"
+      - "8092:3012"
     environment:
-      PORT: 3000
+      PORT: 3012
     command: ["node", "PartnerAPI/Платежи/1234.opent1-LeadOperations-s-rest-v1.js"]
 
   payment_bonus_points:
@@ -135,7 +135,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6014:3000"
+      - "8093:3013"
     environment:
-      PORT: 3000
+      PORT: 3013
     command: ["node", "PartnerAPI/Платежи/1234.opent1-PaymentBonusPoints-s-rest-v1.js"]

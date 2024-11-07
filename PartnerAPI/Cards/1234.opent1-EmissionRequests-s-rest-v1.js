@@ -2,7 +2,7 @@ const express = require('express');
 const { faker } = require('@faker-js/faker');
 const app = express();
 
-const PORT = 5002;
+const PORT = 3004;
 
 app.use(express.json());
 

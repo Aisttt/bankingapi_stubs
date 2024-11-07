@@ -1,7 +1,7 @@
 const express = require('express');
 const { faker } = require('@faker-js/faker');
 const app = express();
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 3011;
 
 // Middleware для парсинга JSON-запросов
 app.use(express.json());

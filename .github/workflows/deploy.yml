@@ -65,11 +65,16 @@ jobs:
             cd /home/aist
             if [ ! -d "bankingapi_stubs" ]; then
               git clone https://github.com/Aisttt/bankingapi_stubs.git
+            else
+              cd bankingapi_stubs
+              git pull
             fi
+            ls -la /home/aist/bankingapi_stubs
           EOF
         shell: /usr/bin/bash -e {0}
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
 
       - name: Deploy to server using SSH
         run: |

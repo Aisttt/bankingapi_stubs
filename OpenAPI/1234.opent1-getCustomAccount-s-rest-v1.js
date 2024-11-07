@@ -114,6 +114,6 @@ app.use((req, res) => {
 });
 
 // Запуск сервера
-app.listen(port, () => {
-    console.log(`Mock API сервер запущен на порту ${port}`);
+app.listen(PORT, () => {
+    console.log(`Mock API сервер запущен на порту ${PORT}`);
 });

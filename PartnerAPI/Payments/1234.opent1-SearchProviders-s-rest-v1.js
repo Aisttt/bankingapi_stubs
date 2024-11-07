@@ -86,8 +86,7 @@ app.use((req, res) => {
     res.status(404).json({ message: "Маршрут не найден" });
 });
 
-
 // Запуск сервера
-app.listen(port, () => {
-    console.log(`Mock API сервер запущен на порту ${port}`);
+app.listen(PORT, () => {
+    console.log(`Mock API сервер запущен на порту ${PORT}`);
 });

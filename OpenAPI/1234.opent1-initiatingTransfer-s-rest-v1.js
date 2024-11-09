@@ -73,23 +73,88 @@ app.get('/accounts', (req, res) => {
             Account: [
                 {
                     accountId: faker.string.uuid(),
-                    status: 'Enabled',
                     currency: 'RUB',
                     accountType: 'Personal',
                     accountSubType: 'CurrentAccount',
-                    schemeName: 'RU.CBR.AccountNumber',
-                    identification: faker.string.numeric(20),
-                    name: 'Основной текущий счет'
+                    AccountDetails: [
+                        {
+                            schemeName: 'RU.CBR.PAN',
+                            identification: faker.string.numeric(20)
+                        }
+                    ],
+                    Owner: {
+                        name: 'Иванов Иван Иванович',
+                        PartyIdentification: [
+                            {
+                                schemeName: 'RU.CBR.TXID',
+                                identification: faker.string.uuid()
+                            }
+                        ]
+                    },
+                    ServiceProvider: {
+                        schemeName: 'RU.CBR.BICFI',
+                        identification: faker.string.numeric(9)
+                    }
+                },
+                {
+                    accountId: faker.string.uuid(),
+                    currency: 'RUB',
+                    accountType: 'Personal',
+                    accountSubType: 'CurrentAccount',
+                    AccountDetails: [
+                        {
+                            schemeName: 'RU.CBR.PAN',
+                            identification: faker.string.numeric(20)
+                        }
+                    ],
+                    Owner: {
+                        name: 'Иванов Иван Иванович',
+                        PartyIdentification: [
+                            {
+                                schemeName: 'RU.CBR.TXID',
+                                identification: faker.string.uuid()
+                            }
+                        ]
+                    },
+                    ServiceProvider: {
+                        schemeName: 'RU.CBR.BICFI',
+                        identification: faker.string.numeric(9)
+                    }
+                },
+                                {
+                    accountId: faker.string.uuid(),
+                    currency: 'USD',
+                    accountType: 'Personal',
+                    accountSubType: 'CurrentAccount',
+                    AccountDetails: [
+                        {
+                            schemeName: 'RU.CBR.PAN',
+                            identification: faker.string.numeric(20)
+                        }
+                    ],
+                    Owner: {
+                        name: 'Иванов Иван Иванович',
+                        PartyIdentification: [
+                            {
+                                schemeName: 'RU.CBR.TXID',
+                                identification: faker.string.uuid()
+                            }
+                        ]
+                    },
+                    ServiceProvider: {
+                        schemeName: 'RU.CBR.BICFI',
+                        identification: faker.string.numeric(9)
+                    }
                 }
             ]
         },
+        Risk: {},
         Links: {
             self: 'https://api.bankingapi.ru/extapi/aft/clientInfo/hackathon/v1/accounts'
         },
-        Meta: { totalPages: '1' }
+        Meta: { totalPages: 1 }
     });
 });
-
 
 // Конечная точка для получения детальной информации о счете по accountId
 app.get('/accounts/:accountId', (req, res) => {
@@ -118,8 +183,8 @@ app.get('/accounts/:accountId/balance', (req, res) => {
     res.json({
         Data: {
             accountId,
-            balance: {
-                amount: {
+            Balance: {
+                Amount: {
                     currency: 'RUB',
                     amount: faker.finance.amount()
                 },
@@ -140,7 +205,7 @@ app.get('/accounts/:accountId/transactions', (req, res) => {
     res.json({
         Data: {
             accountId,
-            transactions: Array.from({ length: 5 }, () => ({
+            Transactions: Array.from({ length: 5 }, () => ({
                 transactionId: faker.string.uuid(),
                 bookingDate: faker.date.past().toISOString(),
                 amount: {
@@ -165,7 +230,7 @@ app.get('/balances', (req, res) => {
             Balance: [
                 {
                     accountId: faker.string.uuid(),
-                    amount: {
+                    Amount: {
                         currency: 'RUB',
                         amount: faker.finance.amount()
                     },
@@ -189,7 +254,7 @@ app.get('/accounts/:accountId/transaction', (req, res) => {
             transactionId: faker.string.uuid(),
             accountId,
             bookingDate: faker.date.past().toISOString(),
-            amount: {
+            Amount: {
                 currency: 'RUB',
                 amount: faker.finance.amount()
             },
@@ -278,7 +343,7 @@ app.get('/accounts/:accountId/statements/:statementId', (req, res) => {
             endDate: faker.date.recent(),
             creationDateTime: faker.date.recent(),
             status: 'Available',
-            transactionList: [
+            TransactionList: [
                 {
                     transactionId: faker.string.uuid(),
                     amount: faker.finance.amount(),
